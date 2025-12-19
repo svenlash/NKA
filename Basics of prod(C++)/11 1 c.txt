@@ -1,0 +1,81 @@
+// Agzamov Arthur NKAbd-01-25 03.12.25 12:35
+#include <iostream>
+using namespace std;
+
+// Данная программа находит в каждой строке матрицы нечетные элементы, а затем возвращает их сумму 
+
+const int LIM = 10;  // Максимальный размер матрицы
+
+// Функция для ввода матрицы
+void InputMatrix(int& M, int& N, int matrix[][LIM]) {
+    do {
+        cout << "Введите количество строк M (0 < M <= " << LIM << "): ";
+        cin >> M;
+    } while (M <= 0 || M > LIM);
+    
+    do {
+        cout << "Введите количество столбцов N (0 < N <= " << LIM << "): ";
+        cin >> N;
+    } while (N <= 0 || N > LIM);
+    
+    cout << "\nВведите матрицу " << M << "x" << N << " (по " << N << " чисел в каждой строке):" << endl;
+    
+    for (int i = 0; i < M; i++) {
+        cout << "Строка " << i+1 << ": ";
+        for (int j = 0; j < N; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+// Функция для вычисления сумм нечетных элементов
+void CalculateSums(int M, int N, int matrix[][LIM], int sums[]) {
+    for (int i = 0; i < M; i++) {
+        sums[i] = 0;
+        for (int j = 0; j < N; j++) {
+            if (matrix[i][j] % 2 != 0) {
+                sums[i] += matrix[i][j];
+            }
+        }
+    }
+}
+
+// Функция для вывода матрицы
+void PrintMatrix(int M, int N, int matrix[][LIM]) {
+    cout << "\nМатрица:" << endl;
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Главная функция программы
+int main() {
+    cout << "Дана матрица размера M × N. Для каждой строки матрицы найти сумму ее нечетных элементов" << endl;
+    
+    int M, N;
+    int matrix[LIM][LIM];
+    int sums[LIM];
+    
+    // Ввод матрицы
+    InputMatrix(M, N, matrix);
+    
+    // Вычисление сумм нечетных элементов
+    CalculateSums(M, N, matrix, sums);
+    
+    // Вывод результатов
+    PrintMatrix(M, N, matrix);
+    
+    int total_sum = 0;
+    cout << "\nСуммы нечетных элементов по строкам:" << endl;
+    
+    for (int i = 0; i < M; i++) {
+        total_sum += sums[i];
+        cout << "Строка " << i+1 << ": " << sums[i] << endl;
+    }
+    
+    cout << "Общая сумма по всем строкам: " << total_sum << endl;
+
+}

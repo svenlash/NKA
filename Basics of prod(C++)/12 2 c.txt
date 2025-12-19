@@ -1,0 +1,47 @@
+// Agzamov Arthur NKAbd-01-25 03.12.25 13:20
+
+//Программа формирования информации о конкретном рейсе на поезде
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Константа для проверки номера поезда
+#define MAX_TRAIN_NUMBER 9999
+
+// Структура Train
+struct Train {
+    string destination;     // пункт назначения
+    int train_number;       // номер поезда
+    string departure_time;  // время отправления
+};
+
+int main() {
+    Train train;
+    
+    cout << "Введите данные о поезде:\n";
+    
+    cout << "Пункт назначения: ";
+    getline(cin, train.destination);
+    
+    // Проверка номера поезда
+    while (true) {
+        cout << "Номер поезда: ";
+        cin >> train.train_number;
+        
+        if (train.train_number > 0) {
+            break;
+        }
+        cout << "Ошибка! Номер должен быть больше 0" << endl;
+    }
+    
+    cout << "Время отправления: ";
+    cin >> train.departure_time;
+    
+    cout << "\nПоезд №" << train.train_number << endl;
+    cout << "Направление: " << train.destination << endl;
+    cout << "Отправление: " << train.departure_time << endl;
+    
+}

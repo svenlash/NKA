@@ -1,0 +1,67 @@
+// Agzamov Arthur NKAbd-01-25 03.12.25 13:10
+
+//Oпределение структуры с именем Student, содержащую
+//следующие поля: фамилия и инициалы; номер группы;
+//успеваемость – массив из пяти элементов.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#define LIM_GRADES 5    // количество оценок
+#define MIN_GRADE 1     // минимальная оценка
+#define MAX_GRADE 5     // максимальная оценка
+
+class Student {
+public:
+    string full_name;   // фамилия и инициалы
+    string group;       // номер группы
+    int grades[LIM_GRADES]; // успеваемость (массив из LIM_GRADES элементов)
+    
+    // Метод для ввода данных
+    void InputStudent() {
+        cout << "Введите фамилию и инициалы: ";
+        getline(cin, full_name);
+        
+        cout << "Введите номер группы: ";
+        getline(cin, group);
+        
+        cout << "Введите " << LIM_GRADES << " оценок (от " << MIN_GRADE << " до " << MAX_GRADE << "):" << endl;
+        for (int i = 0; i < LIM_GRADES; i++) {
+            do {
+                cout << "Оценка " << (i + 1) << ": ";
+                cin >> grades[i];
+                if (grades[i] < MIN_GRADE || grades[i] > MAX_GRADE) {
+                    cout << "Ошибка! Оценка должна быть от " << MIN_GRADE << " до " << MAX_GRADE << endl;
+                }
+            } while (grades[i] < MIN_GRADE || grades[i] > MAX_GRADE);
+        }
+        cin.ignore(); // очистка буфера
+    }
+    
+    // Метод для вывода данных
+    void OutputStudent() {
+        cout << "\nДанные студента:" << endl;
+        cout << "ФИО: " << full_name << endl;
+        cout << "Группа: " << group << endl;
+        cout << "Оценки: ";
+        for (int i = 0; i < LIM_GRADES; i++) {
+            cout << grades[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Student S;
+    
+    cout << "Программа формирования структуры Student" << endl;
+    cout << "Введите данные об одном студенте:" << endl;
+    
+    S.InputStudent();
+    S.OutputStudent();
+    ;
+    
+    return 0;
+}
